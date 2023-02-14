@@ -28,7 +28,7 @@ io.on( 'connection', async function( socket ) {
         
         let db = await aaSqlite.open(db_url);
 
-        let data = await aaSqlite.all(db,`select sum(amount) as amount , name from team left join "transaction" using ("id") group by id order by amount desc;`, []);
+        let data = await aaSqlite.all(db,`select punten, name from team order by punten;`, []);
         await aaSqlite.close(db);
         socket.emit('update-event', data);
         
@@ -57,8 +57,7 @@ let db_url = process.env.DB_URL || "data.db";
 
 const createTables = (newdb) => 
   newdb.exec(`
-CREATE TABLE "team" ("id" varchar,"name" varchar);
-CREATE TABLE "transaction" ("amount" varchar,"id" varchar NOT NULL);COMMIT;
+CREATE TABLE "team" ("id" varchar,"name" varchar,"punten" varchar);
 `, ()  => { });
 
 
