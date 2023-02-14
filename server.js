@@ -28,7 +28,7 @@ io.on( 'connection', async function( socket ) {
         
         let db = await aaSqlite.open(db_url);
 
-        let data = await aaSqlite.all(db,`select punten, name from team order by punten;`, []);
+        let data = await aaSqlite.all(db,`select punten as amount, name from team order by punten;`, []);
         await aaSqlite.close(db);
         socket.emit('update-event', data);
         
