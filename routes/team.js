@@ -23,7 +23,7 @@ router.post("/", async (req, res, next) => {
 
         await aaSqlite.push(db, `insert into team ("id" ,"name","punten") values (?,?,0);COMMIT;`, [uuidv4(),name]);
 
-        let data = await aaSqlite.all(db,`select punten as amount , name from team order by amount;`, []);
+        let data = await aaSqlite.all(db,`select punten as amount , name from team order by punten;`, []);
         await aaSqlite.close(db);
         req.io.emit('update-event', data);
 
