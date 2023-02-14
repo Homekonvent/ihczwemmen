@@ -15,7 +15,7 @@ let io = socketIO(server);
 let aaSqlite = require("./db_as");
 // Set up Global configuration access
 dotenv.config();
-let port = 3340;
+let port = 3342;
 
 server.listen(port, () => {
     console.log(`Success! Your application is running on port ${port}.`);
